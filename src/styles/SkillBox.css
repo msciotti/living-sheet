@@ -1,0 +1,10 @@
+.container {
+  grid-column-start: 2;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  background-color: white;
+};
