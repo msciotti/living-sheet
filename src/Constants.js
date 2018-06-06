@@ -1,3 +1,5 @@
+export const Proficiency = 'Proficiency';
+
 export const Skills = {
   ACROBATICS: 'Acrobatics',
   ANIMAL_HANDLING: 'Animal Handling',
@@ -17,4 +19,13 @@ export const Skills = {
   SLEIGHT_OF_HAND: 'Sleight of Hand',
   STEALTH: 'Stealth',
   SURVIVAL: 'Survival',
+};
+
+export const Stats = {
+  STRENGTH: 'Strength',
+  DEXTERITY: 'Dexterity',
+  CONSTITUTION: 'Constitution',
+  INTELLIGENCE: 'Intelligence',
+  WISDOM: 'Wisdom',
+  CHARISMA: 'Charisma',
 };
