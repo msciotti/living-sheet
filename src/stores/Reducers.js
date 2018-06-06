@@ -1,20 +1,20 @@
 import {combineReducers} from 'redux';
 import {UPDATE_STAT, TOGGLE_SKILL_IS_PROFICIENT} from '../actions/Actions';
-import {Skills, Stats} from '../Constants';
-
-const initialSkills = Object.keys(Skills).map(x => {
-  return {
-    name: Skills[x],
-    value: 0,
-    isProficient: false,
-  };
-});
+import {Skills, Stats, StatForSkill} from '../Constants';
 
 const initialStats = Object.keys(Stats).map(x => {
   return {
     name: Stats[x],
-    value: 0,
+    value: 1,
     bonus: 0,
+  };
+});
+
+const initialSkills = Object.keys(Skills).map(x => {
+  return {
+    name: Skills[x],
+    value: initialStats.find(stat => stat.name === StatForSkill[x]).value,
+    isProficient: false,
   };
 });
 
@@ -26,6 +26,14 @@ const initialState = {
 
 const characterSheet = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_STAT:
+      return {
+        ...state,
+        stats: {
+          ...stats,
+          [action.payload.name]: action.payload.value,
+        },
+      };
     case TOGGLE_SKILL_IS_PROFICIENT:
       return {
         ...state,
@@ -34,7 +42,7 @@ const characterSheet = (state = initialState, action) => {
             ? {
                 ...x,
                 isProficient: !x.isProficient,
-                value: x.isProficient ? (x.value -= state.proficiency) : (x.value += state.proficiency),
+                value: x.isProficient ? x.value - state.proficiency : x.value + state.proficiency,
               }
             : x;
         }),
